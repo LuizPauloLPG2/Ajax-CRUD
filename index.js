@@ -16,7 +16,7 @@ $(document).ready(function () {
         });
     }),
             //UPDATE
-            $(".updateIdEstado").on("click", function () {
+            $(".updateIdEstudo").on("click", function () {
         var html = "";
         var erro = document.querySelector("#erro");
         var id = $("#id_estudo").val();
