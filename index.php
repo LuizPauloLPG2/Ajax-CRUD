@@ -58,8 +58,6 @@
                     </div>
                 </div>
                 <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) { ?>
-
-
                     <tr>
                         <td><?php echo $row['id_estudo']; ?></td>
                         <td><?php echo $row['nome']; ?></td>
