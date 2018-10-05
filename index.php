@@ -51,7 +51,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button id="id_estudo" type="button" class="btn btn-sm btn-success updateIdEstado">SALVAR ALTERAÇÕES</button>
+                                <button id="id_estudo" type="button" class="btn btn-sm btn-success updateIdEstudo">SALVAR ALTERAÇÕES</button>
                                 <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">CANCELAR</button>
                             </div>
                         </div>
