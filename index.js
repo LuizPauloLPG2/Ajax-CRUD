@@ -5,6 +5,7 @@ $(document).ready(function () {
         var id = this.dataset.id;
         $.ajax({
             url: "select.php",
+            method: "POST",
             data: {
                 id: id
             }
@@ -24,6 +25,7 @@ $(document).ready(function () {
         var descricao = $("#desc_estudo").val();
         $.ajax({
             url: "update.php",
+            method: "POST",
             data: {
                 id: id,
                 nome: nome,
@@ -46,6 +48,7 @@ $(document).ready(function () {
         var erro = document.querySelector("#erro");
         $.ajax({
             url: "delete.php",
+            method: "POST",
             data: {
                 id: id
             }
