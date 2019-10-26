@@ -15,8 +15,8 @@ $(document).ready(function () {
             $("#desc_estudo").val(estudo.descricao);
         });
     }),
-            //UPDATE
-            $(".updateIdEstudo").on("click", function () {
+    //UPDATE
+    $(".updateIdEstudo").on("click", function () {
         var html = "";
         var erro = document.querySelector("#erro");
         var id = $("#id_estudo").val();
@@ -39,8 +39,8 @@ $(document).ready(function () {
             }
         });
     }),
-            //DELETE
-            $(".delIdEstudo").on("click", function () {
+    //DELETE
+    $(".delIdEstudo").on("click", function () {
         var id = this.dataset.id;
         var html = "";
         var erro = document.querySelector("#erro");
@@ -59,29 +59,29 @@ $(document).ready(function () {
             }
         });
     }),
-            //INSERT
-            $("#sendData").on("submit", function (e) {
+    //INSERT
+    $("#sendData").on("submit", function (e) {
         var html = "";
         var erro = document.querySelector("#erro");
+        
         e.preventDefault();
+        
         var form = $('#sendData')[0];
+        
         var nome = form.nome_estudo.value;
         var desc = form.desc_estudo.value;
+        
         if (nome === "" || desc === "") {
             html = "<div class='alert alert-danger' role='alert'>CAMPO REQUERIDO</div>";
             erro.innerHTML = html;
             return false;
         }
-        var formData = new FormData(form);
-        formData.set('nome_estudo', nome);
-        formData.set('desc_estudo', desc);
+        var formulario = $('#sendData').serialize();
+        
         $.ajax({
             url: "insert.php",
-            processData: false,
-            dataTypeIn: "plain",
-            contentType: false,
-            type: "POST",
-            data: formData
+            method: "POST",
+            data: formulario
         }).done(function (data) {
             if (data === "true") {
                 location.reload();
