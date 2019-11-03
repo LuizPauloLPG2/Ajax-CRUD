@@ -1,9 +1,11 @@
 <?php
 
 require_once("./conexao.php");
-$id = $_REQUEST["id"];
+
+$id = $_POST["id"];
+
 $sql = ("delete from tbestudo where id_estudo = :id");
-$stmt = Db::_conexao()->prepare($sql);
+$stmt = Db::init()->prepare($sql);
 $stmt->bindValue(":id", $id);
 $stmt->execute();
 
