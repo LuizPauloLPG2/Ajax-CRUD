@@ -1,12 +1,14 @@
 <?php
 
 require_once("./conexao.php");
-$id = $_REQUEST["id"];
-$nome = $_REQUEST["nome"];
-$desc = $_REQUEST["descricao"];
+
+$id = $_POST["id"];
+$nome = $_POST["nome"];
+$desc = $_POST["descricao"];
 
 $sql = ("update tbestudo set nome = upper(:nome), descricao = upper(:desc) where id_estudo = :id");
-$stmt = Db::_conexao()->prepare($sql);
+
+$stmt = Db::init()->prepare($sql);
 $stmt->bindValue(":id", $id);
 $stmt->bindValue(":nome", $nome);
 $stmt->bindValue(":desc", $desc);
