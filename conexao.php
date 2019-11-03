@@ -14,9 +14,8 @@ class Db
             
             return self::$conexao;
         } catch (Exception $e) {
-            echo $e->getMessage();
+            die($e->getMessage());
         }
-        return $conexao;
     }
 
 }
