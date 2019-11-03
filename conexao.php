@@ -5,7 +5,7 @@ class Db
 
     protected static $conexao = null;
         
-    public static function _conexao()
+    public static function init()
     {
         try {
             if(self::$conexao === null){
