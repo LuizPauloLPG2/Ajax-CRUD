@@ -24,7 +24,7 @@
                     <?php require_once("./conexao.php"); ?>
                     <?php
                     $sql = ("select * from tbestudo");
-                    $stmt = Db::_conexao()->prepare($sql);
+                    $stmt = Db::init()->prepare($sql);
                     $stmt->execute();
                     ?>
                 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
