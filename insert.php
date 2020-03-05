@@ -2,21 +2,19 @@
 
 require_once("./conexao.php");
 
-$nome = $_POST["nome_estudo"];
-$desc = $_POST["desc_estudo"];
+$nome = isset($_POST["nome_estudo"]) ? $_POST["nome_estudo"] : NULL;
+$desc = isset($_POST["desc_estudo"]) ? $_POST["desc_estudo"] : NULL;
 
 $sql = ("insert into tbestudo (nome, descricao) values (upper(:nome), upper(:desc))");
 
 $stmt = Db::init()->prepare($sql);
-$stmt->bindValue(":nome", $nome);
-$stmt->bindValue(":desc", $desc);
-$stmt->execute();
+$stmt->bindValue(":nome", $nome, PDO::PARAM_STR);
+$stmt->bindValue(":desc", $desc, PDO::PARAM_STR);
 
-$retorno = $stmt;
-if ($retorno) {
+if ($stmt->execute()) {
     echo "true";
 } else {
     echo "false";
 }
-return $retorno;
+
 echo json_encode($retorno);
