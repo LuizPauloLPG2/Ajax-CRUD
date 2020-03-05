@@ -8,12 +8,10 @@ $sql = ("delete from tbestudo where id_estudo = :id");
 $stmt = Db::init()->prepare($sql);
 $stmt->bindValue(":id", $id, PDO::PARAM_INT);
 
-$r = null;
+$r = false;
 
 if ($stmt->execute()) {
-    $r = "true";
-} else {
-    $r = "false";
+    $r = true;
 }
 
 echo json_encode($r);
