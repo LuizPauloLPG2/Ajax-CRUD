@@ -48,7 +48,7 @@ $(document).ready(function () {
                 } else {
                     html = "<div class='alert alert-danger' role='alert'>ERRO</div>";
                     erro.innerHTML = html;
-                    return false;
+                    return;
                 }
             }
         });
@@ -70,7 +70,7 @@ $(document).ready(function () {
                 } else {
                     html = "<div class='alert alert-danger' role='alert'>ERRO</div>";
                     erro.innerHTML = html;
-                    return false;
+                    return;
                 }
             }
         });
@@ -92,7 +92,7 @@ $(document).ready(function () {
         if (nome === "" || desc === "") {
             html = "<div class='alert alert-danger' role='alert'>CAMPO REQUERIDO</div>";
             erro.innerHTML = html;
-            return false;
+            return;
         }
                
         $.ajax({
@@ -105,7 +105,7 @@ $(document).ready(function () {
                 } else {
                     html = "<div class='alert alert-danger' role='alert'>ERRO</div>";
                     erro.innerHTML = html;
-                    return false;
+                    return;
                 }
             } 
         });
