@@ -8,16 +8,14 @@ $(document).ready(function () {
         $.ajax({
             url: "select.php",
             method: "POST",
-            data: {
-                id: id
-            },
+            data: { id },
             success: response => {
                 
                 estudo = JSON.parse(response);
+                
                 $("#id_estudo").val(estudo.id_estudo);
                 $("#nome_estudo").val(estudo.nome);
                 $("#desc_estudo").val(estudo.descricao);
-            
             }
         });
     }),
@@ -38,9 +36,9 @@ $(document).ready(function () {
             url: "update.php",
             method: "POST",
             data: {
-                id: id,
-                nome: nome,
-                descricao: descricao
+                id,
+                nome,
+                descricao
             },
             success: response => {
                 if (response === "true") {
@@ -55,15 +53,17 @@ $(document).ready(function () {
     }),
     //DELETE
     $(document).off('click.delIdEstudo').on('click.delIdEstudo', '.delIdEstudo', function () {
-        var id = this.dataset.id;
+        
+        var id = $(this).data('id');
+        
         var html = "";
+        
         var erro = document.querySelector("#erro");
+        
         $.ajax({
             url: "delete.php",
             method: "POST",
-            data: {
-                id: id
-            },
+            data: { id },
             success: response => {
                 if (response === "true") {
                     location.reload();
@@ -78,18 +78,18 @@ $(document).ready(function () {
     //INSERT
     $(document).off('submit.sendData').on('submit.sendData', '#sendData', function (e) {
         
+        e.preventDefault();
+        
         var html = "";
         
         var erro = document.querySelector("#erro");
-        
-        e.preventDefault();
-        
+                
         var form = $('#sendData')[0];
         
         var nome = form.nome_estudo.value;
         var desc = form.desc_estudo.value;
         
-        if (nome === "" || desc === "") {
+        if (!nome.trim() || !desc.trim()) {
             html = "<div class='alert alert-danger' role='alert'>CAMPO REQUERIDO</div>";
             erro.innerHTML = html;
             return;
