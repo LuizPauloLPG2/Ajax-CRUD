@@ -41,7 +41,7 @@ $(document).ready(function () {
                 descricao
             },
             success: response => {
-                if (response === "true") {
+                if (response === true) {
                     location.reload();
                 } else {
                     html = "<div class='alert alert-danger' role='alert'>ERRO</div>";
@@ -65,7 +65,7 @@ $(document).ready(function () {
             method: "POST",
             data: { id },
             success: response => {
-                if (response === "true") {
+                if (response === true) {
                     location.reload();
                 } else {
                     html = "<div class='alert alert-danger' role='alert'>ERRO</div>";
@@ -100,7 +100,7 @@ $(document).ready(function () {
             method: "POST",
             data: $('#sendData').serialize(),
             success: response => {
-                if (response === "true") {
+                if (response === true) {
                     location.reload();
                 } else {
                     html = "<div class='alert alert-danger' role='alert'>ERRO</div>";
