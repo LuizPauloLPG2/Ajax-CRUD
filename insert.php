@@ -11,10 +11,12 @@ $stmt = Db::init()->prepare($sql);
 $stmt->bindValue(":nome", $nome, PDO::PARAM_STR);
 $stmt->bindValue(":desc", $desc, PDO::PARAM_STR);
 
+$r = null;
+
 if ($stmt->execute()) {
-    echo "true";
+    $r = "true";
 } else {
-    echo "false";
+    $r = "false";
 }
 
-echo json_encode($retorno);
+echo json_encode($r);
