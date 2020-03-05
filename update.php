@@ -2,25 +2,23 @@
 
 require_once("./conexao.php");
 
-$id = $_POST["id"];
-$nome = $_POST["nome"];
-$desc = $_POST["descricao"];
+$id = isset($_POST["id"]) ? $_POST["id"] : NULL;
+$nome = isset($_POST["nome"]) $_POST["nome"] : NULL;
+$desc = isset($_POST["descricao"]) ? $_POST["descricao"] : NULL;
 
 $sql = ("update tbestudo set nome = upper(:nome), descricao = upper(:desc) where id_estudo = :id");
 
 $stmt = Db::init()->prepare($sql);
-$stmt->bindValue(":id", $id);
-$stmt->bindValue(":nome", $nome);
-$stmt->bindValue(":desc", $desc);
-$stmt->execute();
+$stmt->bindValue(":id", $id, PDO::PARAM_INT);
+$stmt->bindValue(":nome", $nome, PDO::PARAM_STR);
+$stmt->bindValue(":desc", $desc, PDO::PARAM_STR);
 
-$retorno = $stmt;
+$r = null;
 
-if ($retorno) {
-    echo "true";
+if ($stmt->execute()) {
+    $r = "true";
 } else {
-    echo "false";
+    $r = "false";
 }
 
-return $retorno;
-echo json_encode($retorno);
+echo json_encode($r);
