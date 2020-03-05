@@ -1,28 +1,39 @@
 //CRUD
 $(document).ready(function () {
     //SELECT
-    $(".getIdEstudo").on("click", function () {
-        var id = this.dataset.id;
+    $(document).off('click.getIdEstudo').on('click.getIdEstudo', '.getIdEstudo', function () {
+        
+        var id = $(this).data('id');
+        
         $.ajax({
             url: "select.php",
             method: "POST",
             data: {
                 id: id
+            },
+            success: response => {
+                
+                estudo = JSON.parse(response);
+                $("#id_estudo").val(estudo.id_estudo);
+                $("#nome_estudo").val(estudo.nome);
+                $("#desc_estudo").val(estudo.descricao);
+            
             }
-        }).done(function (request) {
-            estudo = JSON.parse(request);
-            $("#id_estudo").val(estudo.id_estudo);
-            $("#nome_estudo").val(estudo.nome);
-            $("#desc_estudo").val(estudo.descricao);
         });
     }),
     //UPDATE
-    $(".updateIdEstudo").on("click", function () {
+    $(document).off('click.updateIdEstudo').on('click.updateIdEstudo', '.updateIdEstudo', function () {
+        
         var html = "";
+        
         var erro = document.querySelector("#erro");
+        
         var id = $("#id_estudo").val();
+        
         var nome = $("#nome_estudo").val();
+        
         var descricao = $("#desc_estudo").val();
+        
         $.ajax({
             url: "update.php",
             method: "POST",
@@ -30,19 +41,20 @@ $(document).ready(function () {
                 id: id,
                 nome: nome,
                 descricao: descricao
-            }
-        }).done(function (data) {
-            if (data === "true") {
-                location.reload();
-            } else {
-                html = "<div class='alert alert-danger' role='alert'>ERRO</div>";
-                erro.innerHTML = html;
-                return false;
+            },
+            success: response => {
+                if (response === "true") {
+                    location.reload();
+                } else {
+                    html = "<div class='alert alert-danger' role='alert'>ERRO</div>";
+                    erro.innerHTML = html;
+                    return false;
+                }
             }
         });
     }),
     //DELETE
-    $(".delIdEstudo").on("click", function () {
+    $(document).off('click.delIdEstudo').on('click.delIdEstudo', '.delIdEstudo', function () {
         var id = this.dataset.id;
         var html = "";
         var erro = document.querySelector("#erro");
@@ -51,20 +63,23 @@ $(document).ready(function () {
             method: "POST",
             data: {
                 id: id
-            }
-        }).done(function (data) {
-            if (data === "true") {
-                location.reload();
-            } else {
-                html = "<div class='alert alert-danger' role='alert'>ERRO</div>";
-                erro.innerHTML = html;
-                return false;
+            },
+            success: response => {
+                if (response === "true") {
+                    location.reload();
+                } else {
+                    html = "<div class='alert alert-danger' role='alert'>ERRO</div>";
+                    erro.innerHTML = html;
+                    return false;
+                }
             }
         });
     }),
     //INSERT
-    $("#sendData").on("submit", function (e) {
+    $(document).off('submit.sendData').on('submit.sendData', '#sendData', function (e) {
+        
         var html = "";
+        
         var erro = document.querySelector("#erro");
         
         e.preventDefault();
@@ -79,20 +94,20 @@ $(document).ready(function () {
             erro.innerHTML = html;
             return false;
         }
-        var formulario = $('#sendData').serialize();
-        
+               
         $.ajax({
             url: "insert.php",
             method: "POST",
-            data: formulario
-        }).done(function (data) {
-            if (data === "true") {
-                location.reload();
-            } else {
-                html = "<div class='alert alert-danger' role='alert'>ERRO</div>";
-                erro.innerHTML = html;
-                return false;
-            }
+            data: $('#sendData').serialize(),
+            success: response => {
+                if (response === "true") {
+                    location.reload();
+                } else {
+                    html = "<div class='alert alert-danger' role='alert'>ERRO</div>";
+                    erro.innerHTML = html;
+                    return false;
+                }
+            } 
         });
     });
 });
